@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ event_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ event_name }}</h1>
+        <p class="description">{{ event_description }}</p>
+
+        <div class="welcome">{{ welcome_text }}</div>
+        <p class="hint">{{ form_hint }}</p>
+
+        <form action="/result" method="POST">
+            <label for="name">姓名 *</label>
+            <input type="text" id="name" name="name" required placeholder="请输入姓名">
+
+            <label for="group">小组</label>
+            <select id="group" name="group">
+                {% for opt in group_options %}
+                <option value="{{ opt }}">{{ opt }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="activity">活动方向</label>
+            <select id="activity" name="activity">
+                {% for opt in activity_options %}
+                <option value="{{ opt }}">{{ opt }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="reason">一句话说明</label>
+            <textarea id="reason" name="reason" rows="3" placeholder="简单说说为什么选择这个方向..."></textarea>
+
+            <button type="submit">提交报名</button>
+        </form>
+
+        <a href="/result" class="view-result">查看报名结果</a>
+
+        <p class="notice">{{ event_notice }}</p>
+    </div>
+</body>
+</html>

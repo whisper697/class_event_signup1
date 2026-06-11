@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ result_title }} - {{ event_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ result_title }}</h1>
+
+        <div class="stats">
+            <h2>总报名人数：<strong>{{ total }}</strong> 人</h2>
+
+            {% if activity_count %}
+            <h3>各方向统计</h3>
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>活动方向</th>
+                        <th>人数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for act, count in activity_count.items() %}
+                    <tr>
+                        <td>{{ act }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+
+        {% if registrations %}
+        <h3>报名列表</h3>
+        <table class="reg-table">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>小组</th>
+                    <th>活动方向</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reg in registrations %}
+                <tr>
+                    <td>{{ reg.name }}</td>
+                    <td>{{ reg.group }}</td>
+                    <td>{{ reg.activity }}</td>
+                    <td>{{ reg.reason }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        <a href="/" class="back-home">返回首页继续报名</a>
+    </div>
+</body>
+</html>
