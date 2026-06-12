@@ -1,8 +1,8 @@
 from flask import Flask, request, render_template
 from data.event_info import EVENT_NAME, EVENT_DESCRIPTION, EVENT_NOTICE
 from data.options import GROUP_OPTIONS, ACTIVITY_OPTIONS
-from data.page_text import WELCOME_TEXT, FORM_HINT, RESULT_TITLE
-from data.registrations import registrations
+from data.page_text import WELCOME_TEXT, FORM_TIPS as FORM_HINT, RESULT_TITLE
+from data.registrations import REGISTRATIONS as registrations
 
 app = Flask(__name__)
 
